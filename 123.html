@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> ♡戀愛遊戲網站♡ </title>
+    <style>
+        /* 在這裡添加CSS樣式來美化網站 */
+        body {
+            font-size: 1.5em;
+		text-align: center; /* 水平置中 */
+		font-family: jf open;
+        }
+
+        h1 {
+            font-size: 2em;
+		color:#FF6670;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+
+        button {
+            font-size: 1.5em;
+        }
+
+        input[type="text"] {
+            font-size: 1.5em;
+        }
+
+        #input-container {
+            display: none;
+        }
+body {
+            background-image: url('https://i.pinimg.com/originals/0a/3b/93/0a3b93a868320f7a3238035233179a62.jpg');
+            background-size: cover; /* 調整圖像大小以適應屏幕 */
+            background-position: center; /* 將圖像置中 */
+            /* 其他的CSS樣式 */
+        }
+
+    </style>
+    <script>
+        function startGame() {
+            var dialogBox = document.getElementById("dialog");
+            var optionsContainer = document.getElementById("options");
+            var confirmButton = document.getElementById("confirm");
+
+            dialogBox.innerHTML = "系統：前面有個漂亮女孩，該不該去搭訕呢？";
+            optionsContainer.innerHTML = `
+                <button onclick="makeChoice('yes')">是</button>
+                <button onclick="makeChoice('no')">否</button>
+            `;
+            optionsContainer.style.display = "block";
+            confirmButton.disabled = true;
+            document.getElementById("input-container").style.display = "none";
+        }
+
+        function makeChoice(choice) {
+            var dialogBox = document.getElementById("dialog");
+            var optionsContainer = document.getElementById("options");
+            var confirmButton = document.getElementById("confirm");
+            var inputContainer = document.getElementById("input-container");
+
+            if (choice === "yes") {
+                dialogBox.innerHTML = "你：是的，我要去搭訕！";
+
+                optionsContainer.style.display = "none";
+                confirmButton.disabled = false;
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image2.jpg";
+
+                setTimeout(function() {
+                    dialogBox.innerHTML = "系統：你發現她也是客家人，你們聊得非常愉快。你在想著該約她去哪裡玩。";
+                    optionsContainer.innerHTML = `
+                        <button onclick="makeChoice('choice1')">台灣客家博物館</button>
+                        <button onclick="makeChoice('choice2')">維新博物館</button>
+                    `;
+                    optionsContainer.style.display = "block";
+                    confirmButton.disabled = true;
+                }, 2000);
+
+            } else if (choice === "no") {
+                dialogBox.innerHTML = "系統：確定嗎？";
+
+                optionsContainer.style.display = "none";
+                confirmButton.disabled = true;
+            } else if (choice === "choice1") {
+                dialogBox.innerHTML = "你：我們約在台灣客家博物館吧！";
+                optionsContainer.style.display = "none";
+                confirmButton.disabled = false;
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image3.jpg";
+
+                setTimeout(function() {
+                    dialogBox.innerHTML = "系統：要跟她聊什麼呢，問她這裡的問題好了！";
+                    inputContainer.innerHTML = `
+                        <input type="text" id="userInput" placeholder="輸入你的問題" style="font-size: 1.5em;" />
+                        <button onclick="sendQuestion()" style="font-size: 1.
+
+5em;">送出</button>
+                    `;
+                    inputContainer.style.display = "block";
+                }, 2000);
+            } else if (choice === "choice2") {
+                dialogBox.innerHTML = "你：我們約在維新博物館吧！";
+                optionsContainer.style.display = "none";
+                confirmButton.disabled = false;
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image4.jpg";
+
+                setTimeout(function() {
+                    dialogBox.innerHTML = "系統：要跟她聊什麼呢，問她這裡的問題好了！";
+                    inputContainer.innerHTML = `
+                        <input type="text" id="userInput" placeholder="輸入你的問題" style="font-size: 1.5em;" />
+                        <button onclick="sendQuestion()" style="font-size: 1.5em;">送出</button>
+                    `;
+                    inputContainer.style.display = "block";
+                }, 2000);
+            } else if (choice === "more") {
+                dialogBox.innerHTML = "你：好想再問其他的喔…";
+                optionsContainer.style.display = "none";
+                confirmButton.style.display = "none";
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image5.jpg";
+
+
+                inputContainer.innerHTML = `
+                    <input type="text" id="userInput" placeholder="輸入你的問題" style="font-size: 1.5em;" />
+                    <button onclick="sendQuestion()" style="font-size: 1.5em;">送出</button>
+                `;
+                inputContainer.style.display = "block";
+            } else if (choice === "other") {
+                dialogBox.innerHTML = "你：去別的地方約會好了！";
+                optionsContainer.style.display = "none";
+                confirmButton.style.display = "none";
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image6.jpg";
+
+                setTimeout(function() {
+                    dialogBox.innerHTML = "系統：重新選擇你想約會的地方吧！";
+                    optionsContainer.innerHTML = `
+                        <button onclick="makeChoice('choice1')">台灣客家博物館</button>
+                        <button onclick="makeChoice('choice2')">維新博物館</button>
+                    `;
+                    optionsContainer.style.display = "block";
+                    confirmButton.disabled = true;
+                }, 2000);
+            } else if (choice === "end") {
+                dialogBox.innerHTML = "你：約會結束";
+                optionsContainer.style.display = "none";
+                confirmButton.style.display = "none";
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image7.jpg";
+
+                var playAgainButton = document.getElementById("playAgainButton");
+                playAgainButton.style.display = "block";
+            }
+        }
+
+        function confirmChoice() {
+            var optionsContainer = document.getElementById("options");
+            var confirmButton = document.getElementById("confirm");
+
+            optionsContainer.style.display = "none";
+            confirmButton.style.display = "none";
+        }
+
+        function sendQuestion() {
+            var userInput = document.getElementById("userInput").value;
+
+            // 向OpenAI發送問題並獲得回答
+            // 在這裡添加與OpenAI的互動程式碼
+            var systemResponse = "OpenAI回答的內容";
+
+            var
+
+ dialogBox = document.getElementById("dialog");
+            dialogBox.innerHTML += "<br><br>" + "OpenAI：" + systemResponse;
+
+            document.getElementById("userInput").value = "";
+
+            var optionsContainer = document.getElementById("options");
+            optionsContainer.innerHTML = `
+                <button onclick="makeChoice('more')" style="font-size: 1.5em;">好想再問其他的喔…</button>
+                <button onclick="makeChoice('other')" style="font-size: 1.5em;">去別的地方約會好了！</button>
+                <button onclick="makeChoice('end')" style="font-size: 1.5em;">約會結束</button>
+            `;
+            optionsContainer.style.display = "block";
+
+            var inputContainer = document.getElementById("input-container");
+            inputContainer.style.display = "none";
+        }
+
+        function playAgain() {
+            location.reload();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1> ♡ 戀愛遊戲網站 ♡ </h1>
+        
+    </header>
+
+    <main>
+        <h2>遊戲介紹</h2>
+        <p>在這裡寫遊戲的簡短介紹和說明。</p>
+
+        <h2>選擇遊戲</h2>
+        <button onclick="startGame()" style="font-size: 1.5em;">開始遊戲</button>
+
+        <div id="dialog" style="font-size: 1.5em;"></div>
+
+        <div id="options" style="display: none;"></div>
+
+        <button id="confirm" disabled onclick="confirmChoice()" style="font-size: 1.5em;">確定</button>
+
+        <img id="image" src="image1.jpg" alt="遊戲畫面" />
+
+        <div id="input-container" style="display: none;"></div>
+
+        <h2>關於我們</h2>
+        <p>在這裡寫關於你們團隊的介紹和資訊。</p>
+
+        <h2>聯絡我們</h2>
+        <p>在這裡提供聯絡資訊，例如電子郵件或表單。</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 戀愛遊戲網站</p>
+    </footer>
+    <button id="playAgainButton" onclick="playAgain()" style="display: none; font-size: 1.5em;">再玩一次</button>
+</body>
+</html>
