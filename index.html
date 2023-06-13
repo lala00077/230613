@@ -39,7 +39,34 @@ body {
         }
 
     </style>
-    <script>
+    
+</head>
+<body>
+    <header>
+        <h1> ♡ 戀愛遊戲網站 ♡ </h1>
+        
+    </header>
+
+    <main>
+        <h2>遊戲介紹</h2>
+        <p>
+		在《戀與客家人》中，你將扮演一位勇敢的男生，遇見了一位<br>
+		心儀的女孩。這是一個充滿驚喜和浪漫的冒險！在咖啡廳偶遇她後，<br>
+		你發現彼此都是客家人，這擦出了愛的火花。現在，你需要選擇一個客家景點，<br>
+		讓約會更加特別。這是一段難忘的愛情故事！準備好迎接浪漫冒險了嗎？</p>
+
+        <h2>選擇遊戲</h2>
+        <button onclick="startGame()" style="font-size: 1.5em;">開始遊戲</button>
+
+        <div id="dialog" style="font-size: 1.5em;"></div>
+
+        <div id="options" style="display: none;"></div>
+
+        <button id="confirm" disabled onclick="confirmChoice()" style="font-size: 1.5em;">確定</button>
+
+      	<img src="images/1.jpg.jpg" alt="圖片描述" style="width: 50%; height: auto;">
+
+	<script>
         function startGame() {
             var dialogBox = document.getElementById("dialog");
             var optionsContainer = document.getElementById("options");
@@ -201,33 +228,6 @@ body {
             location.reload();
         }
     </script>
-</head>
-<body>
-    <header>
-        <h1> ♡ 戀愛遊戲網站 ♡ </h1>
-        
-    </header>
-
-    <main>
-        <h2>遊戲介紹</h2>
-        <p>
-		在《戀與客家人》中，你將扮演一位勇敢的男生，遇見了一位<br>
-		心儀的女孩。這是一個充滿驚喜和浪漫的冒險！在咖啡廳偶遇她後，<br>
-		你發現彼此都是客家人，這擦出了愛的火花。現在，你需要選擇一個客家景點，<br>
-		讓約會更加特別。這是一段難忘的愛情故事！準備好迎接浪漫冒險了嗎？</p>
-
-        <h2>選擇遊戲</h2>
-        <button onclick="startGame()" style="font-size: 1.5em;">開始遊戲</button>
-
-        <div id="dialog" style="font-size: 1.5em;"></div>
-
-        <div id="options" style="display: none;"></div>
-
-        <button id="confirm" disabled onclick="confirmChoice()" style="font-size: 1.5em;">確定</button>
-
-      	<img src="images/1.jpg.jpg" alt="圖片描述" style="width: 50%; height: auto;">
-
-
 
         <div id="input-container" style="display: none;"></div>
 
