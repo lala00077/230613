@@ -39,75 +39,168 @@ body {
         }
 
     </style>
-	<script>
-  function startGame() {
-    var dialogBox = document.getElementById("dialog");
-    var optionsContainer = document.getElementById("options");
+<script>
+        function startGame() {
+            var dialogBox = document.getElementById("dialog");
+            var optionsContainer = document.getElementById("options");
+            var confirmButton = document.getElementById("confirm");
 
-    dialogBox.innerHTML = "系統：前面有個漂亮女孩，該不該去搭訕呢？";
-    optionsContainer.innerHTML = `
-      <button onclick="makeChoice(true)">是</button>
-      <button onclick="makeChoice(false)">否</button>
-    `;
-    optionsContainer.style.display = "block";
-  }
+            dialogBox.innerHTML = "系統：前面有個漂亮女孩，該不該去搭訕呢？";
+            optionsContainer.innerHTML = `
+                <button onclick="makeChoice('yes')">是</button>
+                <button onclick="makeChoice('no')">否</button>
+            `;
+            optionsContainer.style.display = "block";
+            confirmButton.disabled = true;
+            document.getElementById("input-container").style.display = "none";
+        }
 
-  function makeChoice(choice) {
-    var dialogBox = document.getElementById("dialog");
-    var optionsContainer = document.getElementById("options");
+        function makeChoice(choice) {
+            var dialogBox = document.getElementById("dialog");
+            var optionsContainer = document.getElementById("options");
+            var confirmButton = document.getElementById("confirm");
+            var inputContainer = document.getElementById("input-container");
 
-    if (choice) {
-      dialogBox.innerHTML = "你：是的，我要去搭訕！";
-      setTimeout(function() {
-        dialogBox.innerHTML = "系統：你們聊得非常愉快。你在想著該約她去哪裡玩。";
-        optionsContainer.innerHTML = `
-          <button onclick="makeChoice('台灣客家博物館')">台灣客家博物館</button>
-          <button onclick="makeChoice('維新博物館')">維新博物館</button>
-        `;
-      }, 2000);
-    } else {
-      dialogBox.innerHTML = "系統：確定嗎？";
-      optionsContainer.style.display = "none";
-    }
-  }
+            if (choice === "yes") {
+                dialogBox.innerHTML = "你：是的，我要去搭訕！";
 
-  function sendQuestion(location) {
-    var dialogBox = document.getElementById("dialog");
-    var inputContainer = document.getElementById("input-container");
+                optionsContainer.style.display = "none";
+                confirmButton.disabled = false;
 
-    dialogBox.innerHTML += "<br><br>你：" + location;
-    inputContainer.innerHTML = `
-      <input type="text" id="userInput" placeholder="輸入你的問題" style="font-size: 1.5em;" />
-      <button onclick="getAnswer()" style="font-size: 1.5em;">送出</button>
-    `;
-    inputContainer.style.display = "block";
-  }
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image2.jpg";
 
-  function getAnswer() {
-    var userInput = document.getElementById("userInput").value;
+                setTimeout(function() {
+                    dialogBox.innerHTML = "系統：你發現她也是客家人，你們聊得非常愉快。你在想著該約她去哪裡玩。";
+                    optionsContainer.innerHTML = `
+                        <button onclick="makeChoice('choice1')">台灣客家博物館</button>
+                        <button onclick="makeChoice('choice2')">維新博物館</button>
+                    `;
+                    optionsContainer.style.display = "block";
+                    confirmButton.disabled = true;
+                }, 2000);
 
-    // 向OpenAI發送問題並獲得回答
-    // 在這裡添加與OpenAI的互動程式碼
-    var systemResponse = "OpenAI回答的內容";
+            } else if (choice === "no") {
+                dialogBox.innerHTML = "系統：確定嗎？";
 
-    var dialogBox = document.getElementById("dialog");
-    dialogBox.innerHTML += "<br><br>OpenAI：" + systemResponse;
+                optionsContainer.style.display = "none";
+                confirmButton.disabled = true;
+            } else if (choice === "choice1") {
+                dialogBox.innerHTML = "你：我們約在台灣客家博物館吧！";
+                optionsContainer.style.display = "none";
+                confirmButton.disabled = false;
 
-    document.getElementById("userInput").value = "";
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image3.jpg";
 
-    var optionsContainer = document.getElementById("options");
-    optionsContainer.innerHTML = `
-      <button onclick="sendQuestion('台灣客家博物館')">問關於台灣客家博物館的問題</button>
-      <button onclick="sendQuestion('維新博物館')">問關於維新博物館的問題</button>
-      <button onclick="makeChoice('more')">好想再問其他的喔…</button>
-      <button onclick="makeChoice('end')">約會結束</button>
-    `;
-  }
+                setTimeout(function() {
+                    dialogBox.innerHTML = "系統：要跟她聊什麼呢，問她這裡的問題好了！";
+                    inputContainer.innerHTML = `
+                        <input type="text" id="userInput" placeholder="輸入你的問題" style="font-size: 1.5em;" />
+                        <button onclick="sendQuestion()" style="font-size: 1.
 
-  function playAgain() {
-    location.reload();
-  }
-</script>
+5em;">送出</button>
+                    `;
+                    inputContainer.style.display = "block";
+                }, 2000);
+            } else if (choice === "choice2") {
+                dialogBox.innerHTML = "你：我們約在維新博物館吧！";
+                optionsContainer.style.display = "none";
+                confirmButton.disabled = false;
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image4.jpg";
+
+                setTimeout(function() {
+                    dialogBox.innerHTML = "系統：要跟她聊什麼呢，問她這裡的問題好了！";
+                    inputContainer.innerHTML = `
+                        <input type="text" id="userInput" placeholder="輸入你的問題" style="font-size: 1.5em;" />
+                        <button onclick="sendQuestion()" style="font-size: 1.5em;">送出</button>
+                    `;
+                    inputContainer.style.display = "block";
+                }, 2000);
+            } else if (choice === "more") {
+                dialogBox.innerHTML = "你：好想再問其他的喔…";
+                optionsContainer.style.display = "none";
+                confirmButton.style.display = "none";
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image5.jpg";
+
+
+                inputContainer.innerHTML = `
+                    <input type="text" id="userInput" placeholder="輸入你的問題" style="font-size: 1.5em;" />
+                    <button onclick="sendQuestion()" style="font-size: 1.5em;">送出</button>
+                `;
+                inputContainer.style.display = "block";
+            } else if (choice === "other") {
+                dialogBox.innerHTML = "你：去別的地方約會好了！";
+                optionsContainer.style.display = "none";
+                confirmButton.style.display = "none";
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image6.jpg";
+
+                setTimeout(function() {
+                    dialogBox.innerHTML = "系統：重新選擇你想約會的地方吧！";
+                    optionsContainer.innerHTML = `
+                        <button onclick="makeChoice('choice1')">台灣客家博物館</button>
+                        <button onclick="makeChoice('choice2')">維新博物館</button>
+                    `;
+                    optionsContainer.style.display = "block";
+                    confirmButton.disabled = true;
+                }, 2000);
+            } else if (choice === "end") {
+                dialogBox.innerHTML = "你：約會結束";
+                optionsContainer.style.display = "none";
+                confirmButton.style.display = "none";
+
+                var imageContainer = document.getElementById("image");
+                imageContainer.src = "image7.jpg";
+
+                var playAgainButton = document.getElementById("playAgainButton");
+                playAgainButton.style.display = "block";
+            }
+        }
+
+        function confirmChoice() {
+            var optionsContainer = document.getElementById("options");
+            var confirmButton = document.getElementById("confirm");
+
+            optionsContainer.style.display = "none";
+            confirmButton.style.display = "none";
+        }
+
+        function sendQuestion() {
+            var userInput = document.getElementById("userInput").value;
+
+            // 向OpenAI發送問題並獲得回答
+            // 在這裡添加與OpenAI的互動程式碼
+            var systemResponse = "OpenAI回答的內容";
+
+            var
+
+ dialogBox = document.getElementById("dialog");
+            dialogBox.innerHTML += "<br><br>" + "OpenAI：" + systemResponse;
+
+            document.getElementById("userInput").value = "";
+
+            var optionsContainer = document.getElementById("options");
+            optionsContainer.innerHTML = `
+                <button onclick="makeChoice('more')" style="font-size: 1.5em;">好想再問其他的喔…</button>
+                <button onclick="makeChoice('other')" style="font-size: 1.5em;">去別的地方約會好了！</button>
+                <button onclick="makeChoice('end')" style="font-size: 1.5em;">約會結束</button>
+            `;
+            optionsContainer.style.display = "block";
+
+            var inputContainer = document.getElementById("input-container");
+            inputContainer.style.display = "none";
+        }
+
+        function playAgain() {
+            location.reload();
+        }
+    </script>
 
     
 </head>
