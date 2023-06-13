@@ -70,7 +70,7 @@ body {
                 var imageContainer = document.getElementById("image");
                 imageContainer.src = "image2.jpg";
 
-                setTimeout(function() {
+              
                     dialogBox.innerHTML = "系統：你發現她也是客家人，你們聊得非常愉快。你在想著該約她去哪裡玩。";
                     optionsContainer.innerHTML = `
                         <button onclick="makeChoice('choice1')">台灣客家博物館</button>
@@ -78,7 +78,7 @@ body {
                     `;
                     optionsContainer.style.display = "block";
                     confirmButton.disabled = true;
-                }, 2000);
+                
 
             } else if (choice === "no") {
                 dialogBox.innerHTML = "系統：確定嗎？";
