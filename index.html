@@ -160,13 +160,16 @@ body {
                     `;
                     inputContainer.style.display = "block";
                 }, 2000);
+		 
+		var imageContainer = document.getElementById("image");
+                imageContainer.src = "images/6.jpg";
+		    
             } else if (choice === "more") {
                 dialogBox.innerHTML = "你：好想再問其他的喔…";
                 optionsContainer.style.display = "none";
                 confirmButton.style.display = "none";
 
-                var imageContainer = document.getElementById("image");
-                imageContainer.src = "images/6.jpg";
+               
 
                 inputContainer.innerHTML = `
                     <input type="text" id="userInput" placeholder="輸入你的問題" style="font-size: 1.5em;" />
