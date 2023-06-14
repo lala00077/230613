@@ -212,49 +212,18 @@ body {
             optionsContainer.style.display = "none";
             confirmButton.style.display = "none";
         }
-		const openai = require('openai');
+		
+		function sendQuestion() {
+            var userInput = document.getElementById("userInput").value;
 
-function sendQuestion() {
-    var userInput = document.getElementById("userInput").value;
-
-    // 使用您的 API 密鑰創建 OpenAI API 實例
-    const api = new openai.OpenAI({
-        apiKey: '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'
-    });
-
-    // 設置 OpenAI 的請求參數
-    const params = {
-        model: 'davinci',  // 使用的模型，例如 'davinci'、'curie' 等
-        prompt: userInput,  // 提供給模型的問題或提示
-        maxTokens: 100,  // 生成的回答的最大長度
-        temperature: 0.6  // 控制回答的創造性和多樣性
-    };
-
-    // 向 OpenAI 發送請求以獲取回答
-    api.complete(params)
-        .then(response => {
-            var systemResponse = response.choices[0].text.trim();
+            // 向OpenAI發送問題並獲得回答
+            // 在這裡添加與OpenAI的互動程式碼
+            var systemResponse = "OpenAI回答的內容";
 
             var dialogBox = document.getElementById("dialog");
             dialogBox.innerHTML += "<br><br>" + "OpenAI：" + systemResponse;
 
             document.getElementById("userInput").value = "";
-
-            var optionsContainer = document.getElementById("options");
-            optionsContainer.innerHTML = `
-                <button onclick="makeChoice('more')" style="font-size: 1.5em;">好想再問其他的喔…</button>
-                <button onclick="makeChoice('other')" style="font-size: 1.5em;">去別的地方約會好了！</button>
-                <button onclick="makeChoice('end')" style="font-size: 1.5em;">約會結束</button>
-            `;
-            optionsContainer.style.display = "block";
-
-            var inputContainer = document.getElementById("input-container");
-            inputContainer.style.display = "none";
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
 
         
             var optionsContainer = document.getElementById("options");
