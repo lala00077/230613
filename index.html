@@ -217,11 +217,37 @@ body {
             var userInput = document.getElementById("userInput").value;
 
             // 向OpenAI發送問題並獲得回答
+			async function sendQuestion() {
+  var userInput = document.getElementById("userInput").value;
+  var dialogBox = document.getElementById("dialog");
+
+  // 向 OpenAI API 發送問題並獲得回答
+  var response = await fetch("https://api.openai.com/v1/engines/davinci-codex/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer YOUR_API_KEY" // 請替換為您的 OpenAI API 金鑰
+    },
+    body: JSON.stringify({
+      prompt: "User: " + userInput + "\nAI:",
+      max_tokens: 50 // 設定生成回答的最大 tokens 數量
+    })
+  });
+
+  var data = await response.json();
+  var systemResponse = data.choices[0].text.trim();
+
+  dialogBox.innerHTML += "<br><br>" + "OpenAI：" + systemResponse;
+
+  document.getElementById("userInput").value = "";
+  // ...
+}
+
             // 在這裡添加與OpenAI的互動程式碼
             var systemResponse = "OpenAI回答的內容";
 
             var dialogBox = document.getElementById("dialog");
-            dialogBox.innerHTML += "<br><br>" + "OpenAI：" + systemResponse;
+            dialogBox.innerHTML += "<br><br>" + "她：" + systemResponse;
 
             document.getElementById("userInput").value = "";
 
